@@ -1,0 +1,40 @@
+body {
+	margin: 0;
+}
+
+#main-inner {
+	background: #fff none repeat scroll 0 0;
+    margin: 0 auto;
+    padding: 20px 30px 100px;
+    width: 960px;
+}
+
+.node-links {
+	display: none;
+}
+
+#du-home .views-row {
+	width: 30%;
+	float: left;
+	padding: 20px 10px 20px;
+}
+
+#du-home .views-row a {
+	font-size: 22px;
+}
+
+.view-id-nodehierarchy_children_list {
+	margin: 100px 0 0;
+}
+
+#footer-nav {
+	border-top: 1px solid #ddd;
+    margin: 30px 0 0;
+    padding: 30px 0 0;
+}
+
+#footer-nav .nav-item {
+	background: #eee;
+    margin: 5px 0 0;
+    padding: 5px;
+}
