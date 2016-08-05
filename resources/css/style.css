@@ -3,10 +3,15 @@ body {
 }
 
 #main-inner {
-	background: #fff none repeat scroll 0 0;
+	background: #eee none repeat scroll 0 0;
     margin: 0 auto;
-    padding: 20px 30px 100px;
+    padding: 10px 30px 100px;
     width: 960px;
+}
+
+h1 {
+    margin: 10px 0;
+    padding: 10px 0;
 }
 
 .node-links {
@@ -38,3 +43,98 @@ body {
     margin: 5px 0 0;
     padding: 5px;
 }
+
+.group-transcript legend {
+    display: none;
+}
+
+.bubble-left {
+    background: #a9defa url("../img/bubble-left.png") no-repeat scroll left bottom;
+    margin-right: 20%;
+}
+
+.bubble-left, .bubble-right {
+    padding: 15px;
+}
+
+.bubble-left p, .bubble-right p {
+    margin: 0 0 15px;
+}
+
+.bubble-right {
+    background: #f0eaf2 url("../img/bubble-right.png") no-repeat scroll right bottom;
+    margin-left: 20%;
+}
+
+#node-article-full-group-content {
+    background: #fff;
+    padding: 0 20px 20px;
+    width: 600px;
+    margin: 0 auto;
+}
+
+video {
+    margin: 10px 0;
+    border: 1px solid #333;
+}
+
+.tbl-style, table {
+    margin: 10px auto 20px;
+}
+
+.tbl-style th, table th {
+    background: #800080;
+    color: #fff;
+}
+
+.group-download legend {
+    padding: 0;
+}
+
+.group-download .fieldset-legend {
+    padding: 0 0 7px;
+    margin: 0 0 10px;
+    font-weight: bold;
+    font-size: 1.5em;
+    border-bottom: 1px solid #ccc;
+    display: block; 
+}
+
+.field-name-field-transcript p {
+    margin: 0 0 10px;
+    line-height: 2em;
+}
+
+.views-row {
+    float: left;
+    height: 120px;
+    margin: 0 20px 40px;
+    width: 45%;
+}
+
+.views-field-field-image {
+    float: left;
+    width: 155px;
+}
+
+.views-field-field-image img {
+    border: 5px solid #bbb;
+}
+
+.views-field-title {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.views-field-title,
+.views-field-field-teaser {
+    float: right;
+    width: 60%;
+}
+
+.content-inner {
+    margin: 20px 0 0;
+}
+
+
+
