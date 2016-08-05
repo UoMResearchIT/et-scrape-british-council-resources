@@ -17,7 +17,7 @@ class ProcessContent():
 		print('Processing content...')
 					
 		# Add the HTML header
-		html = self.getHeader()
+		html = self.getHeader(subdir)
 		
 		# Add the nav links
 		html += self.buildNavigation()
@@ -26,7 +26,7 @@ class ProcessContent():
 		html += content
 		
 		# Add the HTML footer
-		html += self.getFooter()
+		html += self.getFooter(subdir)
 		
 		# Write the HTML file as an index file in it's own directory
 		print("Writing index.html file for {}".format(subdir))
@@ -47,15 +47,22 @@ class ProcessContent():
 			print('index.html does not exist, an error must\'ve occurred.')
 			
 		print('Done')
+		print('------------------------------------------------------')
 	
-	def getHeader(self):
+	def getHeader(self, subdir):
+		
+		if len(subdir) == 0:
+			dir = ''
+		else:
+			dir = '../'
+			
 		header = """<!doctype html>
 						 <html>
 						 <head>
 						 	<meta charset="utf-8" />
 							<!-- css -->
-							<link type="text/css" rel="stylesheet" href="../css/main.css" media="all" />
-  							<link type="text/css" rel="stylesheet" href="../css/style.css" media="all" />
+							<link type="text/css" rel="stylesheet" href="{}../css/main.css" media="all" />
+  							<link type="text/css" rel="stylesheet" href="{}../css/style.css" media="all" />
 						 </head>
 						 <body>
 						 <div class="header">
@@ -83,12 +90,12 @@ class ProcessContent():
 							</div>
 							<div class="page-header">
 								<a href="/" style="float:right;display:block">British Council home &raquo;</a>
-								<img src="../img/bc-logo.jpg" alt="British Council logo" width="200">
+								<img src="{}../img/bc-logo.jpg" alt="British Council logo" width="200">
 							</div>
 						  </div>
 						</div>
 						<div id="main-inner">
-						"""
+						""".format(dir, dir, dir)
 		
 		return header
 	
@@ -111,7 +118,12 @@ class ProcessContent():
 		
 		return navHTML
 		
-	def getFooter(self):
+	def getFooter(self, subdir):
+		if len(subdir) == 0:
+			dir = ''
+		else:
+			dir = '../'
+			
 		footer = """</div>
 					<div class="footer">
 					  <div class="container">
@@ -121,13 +133,13 @@ class ProcessContent():
 						  <li><a href="copyright-licensing.html">Copyright and licensing</a></li>
 						</ul>
 						<ul class="tribute-logos">
-						  <li><img src="../img/university-of-manchester.png" alt="The University of Manchester logo" width="109" height="46" class="tribute-logo" /></li>
+						  <li><img src="{}../img/university-of-manchester.png" alt="The University of Manchester logo" width="109" height="46" class="tribute-logo" /></li>
 						</ul>
 					  </div>
 					</div>
 					
 					</body>
-					</html>"""
+					</html>""".format(dir)
 		
 		return footer
 

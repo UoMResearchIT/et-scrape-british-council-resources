@@ -67,12 +67,12 @@ class BCFetch():
 			# Images
 			for img in homepage.findAll('img', src=True):
 				# Makes the links relative
-				img['src'] = img['src'].split('?', 1)[0]
-				imagefilename = img['src'].rsplit('/', 1)[-1]
+				imgURL = img['src'].split('?', 1)[0]
+				imagefilename = imgURL.rsplit('/', 1)[-1]
 				urllib.request.urlretrieve(img['src'], 'resources/pages/'+imagefilename)
 				
 				# Save the images and update the paths
-				img['src'] = img['src'].replace('http://learnenglishteens.britishcouncil.org/sites/teens/files/styles/article_listing/public/field/image/', '')
+				img['src'] = img['src'].replace(img['src'], imagefilename)
   				
 			# Save the dir page content in the content root folder
 			pc = ProcessContent()
@@ -89,26 +89,37 @@ class BCFetch():
 		self.contentURLs.pop(0)
 		print('Processing', len(self.contentURLs), 'pages...')
 		for url in self.contentURLs:
+			print('------------------------------------------------------')
 			print('Working on: ', url)
 			# Get the page content
 			content = ''
 			page = requests.get('http://learnenglishteens.britishcouncil.org'+url).text
 			html = BeautifulSoup(page, 'html.parser')
 			html.prettify()
-			content = html.find("div", {"id": "node-article-full-group-content"})
+			content = html.findAll("div", {"id": "node-article-full-group-content"})
 			
 			# Create subdir
 			subdir = url.rsplit('/', 1)[-1]
-			os.mkdir('resources/pages/'+subdir);
+			if not os.path.exists('resources/pages/'+subdir):
+				os.mkdir('resources/pages/'+subdir);
+			
+			'''
+			yes = html.find('video')
+			print(yes)
+			'''
 			
 			# Save media
-			for video in content.findAll('video', src=True):
+			for video in content[0].findAll('video', src=True):
+				print('>>>> Video found')
 				# Makes the links relative
-				video['src'] = video['src'].split('?', 1)[0]
-				videofilename = video['src'].rsplit('/', 1)[-1]
-				urllib.request.urlretrieve(video['src'], 'resources/pages/'+subdir+'/'+videofilename)
+				videoURL = video['src']
+				videoURL = videoURL.split('?', 1)[0]
+				videofilename = videoURL.rsplit('/', 1)[-1]
 				
-				# Save the images and update the paths
+				# Save the video
+				urllib.request.urlretrieve(video['src'], 'resources/pages/'+subdir+'/'+videofilename) 
+				
+				# Update the path
 				video['src'] = video['src'].replace(video['src'], videofilename)
   				
 			# Save the page
