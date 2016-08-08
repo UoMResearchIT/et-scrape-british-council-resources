@@ -130,19 +130,23 @@ class BCFetch():
 				print('>>>> Viddler found')
 				vidID = dataVid['data-video-id']
 				
-				print('http://www.viddler.com/file/p/'+vidID+'.mp4?vfid=7782055d4424d3d4aadf6dbd12ffa429&ec_rate=63.695603550295864&ec_prebuf=60')
+				print('http://www.viddler.com/file/p/'+vidID+'.mp4')
 				
 				# Save the video
+				'''
 				try:
-					urllib.request.urlretrieve('http://www.viddler.com/file/p/'+vidID+'.mp4?vfid=7782055d4424d3d4aadf6dbd12ffa429&ec_rate=63.695603550295864&ec_prebuf=60', 'resources/pages/'+subdir+'/'+vidID+'.mp4') 
-								
-					videoHTML = '<video width="100%" x-webkit-airplay="allow" type="video/mp4" src="'+vidID+'.mp4" controls="controls"></video>'
+				'''
+				urllib.request.urlretrieve('http://www.viddler.com/file/p/'+vidID+'.mp4', 'resources/pages/'+subdir+'/'+vidID+'.mp4') 
+							
+				videoHTML = BeautifulSoup('<video width="100%" x-webkit-airplay="allow" type="video/mp4" src="'+vidID+'.mp4" controls="controls"></video>', 'html5lib')
 				
-					mediaContainer = content[0].find("div", {"class": "field-name-field-media"})
-					mediaContainer.insert(1, videoHTML)
+				mediaContainer = content[0].find(class_='field-name-field-media')
+				mediaContainer.insert(1, videoHTML.video)	
+				
+				'''	
 				except urllib.error.HTTPError:
 					print('Error fetching the video file.')
-  					
+  				'''	
   			# Save files
 			for file in content[0].findAll("span", {"class": "file"}):
 				print('>>>> File found')
